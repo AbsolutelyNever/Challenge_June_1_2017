@@ -1,0 +1,67 @@
+import random
+import itertools
+
+blah=True #make that loop doo
+while blah:
+  noPlayers = int(input("Number of players: "))
+  noCards = int(input("Number of cards: "))
+  
+  if (noPlayers * noCards > 52):
+    print("No can do.\n")
+    
+  else:
+    players = []
+    
+    for x in range(noPlayers):
+      players.append('player' + str(x))
+    
+    #Build the hard deck
+    suits = 'Diamonds', 'Spades', 'Hearts', 'Clubs'
+    values = '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'
+    deck = tuple(' of '.join(card) for card in itertools.product(values, suits))
+    listDeck = list(deck) #changing the tuple to a list so I can remove easily
+    
+    #count the cards in the current deck
+    def countCards(liveDeck):
+      count = len(liveDeck)
+      return count
+      
+    def dealCards(liveDeck):
+      print("")
+      if (countCards(liveDeck) < noPlayers * noCards):
+        print("Not enough cards to deal again. Shuffling...")
+        liveDeck = list(deck) #resetting the deck to the original 52 cards
+        return liveDeck #passing back a fresh deck
+        
+      else:
+        for player in players:
+          playerNo = players.index(player) + 1
+          print('Player ' + str(playerNo) + "'s hand:")
+          hand = random.sample(liveDeck, noCards)
+          
+          #dealing cards and removing them from the live deck
+          for card in hand:
+            print(card)
+            liveDeck.remove(card)
+            countCards(liveDeck)
+          
+          print("")
+
+        return liveDeck
+    
+    ans=True
+    
+    while ans:
+      print("""
+      1. Deal
+      2. Exit
+      """)
+      ans=input("Select an option: ")
+      
+      if ans=="1":
+        listDeck = dealCards(listDeck)
+      
+      elif ans=="2":
+        quit()
+      else:
+        print("wut 0.0")
