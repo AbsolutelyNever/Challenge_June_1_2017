@@ -13,8 +13,8 @@ namespace Poker
             string input = Console.ReadLine();
             if (input.ToLower() != "x")
             {
-              Deck mydeck = new Deck();
-              mydeck = FisherYates.Shuffle(mydeck);
+              Deck deck = new Deck();
+              deck = FisherYates.Shuffle(deck);
               Console.WriteLine("How many players?");
               int players = Convert.ToInt32(Console.ReadLine());
               Console.WriteLine("How many cards?");
@@ -26,28 +26,55 @@ namespace Poker
               }
               else
               {
-                //PlayerHand[] table = new PlayerHand[players];
-                List<List<Card>> table = new List<List<Card>>();
-                for (int i=0; i<players; i++)
-                {
-                  table.Add(new List<Card>());
-                  for (int k = 0; k<handSize ; k++)
-                  {
-                    table[i].Add(mydeck.cards[mydeck.cards.Length-1]);
-                    //Console.WriteLine(table[i]);
-                    Array.Resize(ref mydeck.cards, mydeck.cards.Length-1);
-                  }
-                  foreach(Card c in table[i])
-                  {
-                    Console.WriteLine(c.ToString());
-                  }
-                  if (i == players-1) Console.WriteLine("Press enter to Exit");
-                  else Console.WriteLine("Press enter to display next hand");
-                  Console.ReadLine();
-                }
+                Deal(players, handSize, deck);
+                Console.WriteLine("Press enter to Exit to main menu");
+                Console.ReadLine();
+                Main();
               }
             }
         }
+        static void Deal(int players2, int handSize2, Deck mydeck)
+        {
+          List<List<Card>> table = new List<List<Card>>();
+          for (int i=0; i<players2; i++)
+          {
+            table.Add(new List<Card>());
+            for (int k = 0; k<handSize2 ; k++)
+            {
+              table[i].Add(mydeck.cards[mydeck.cards.Length-1]);
+              //Console.WriteLine(table[i]);
+              Array.Resize(ref mydeck.cards, mydeck.cards.Length-1);
+            }
+            foreach(Card c in table[i])
+            {
+              Console.WriteLine(c.ToString());
+            }
+            if (i != players2-1) 
+            {
+              Console.WriteLine("Press enter to display next hand");
+              Console.ReadLine();
+            }
+            else 
+            {
+              Console.WriteLine("Deal again? Y/N");
+              string input2 = Console.ReadLine();
+              if (input2.ToLower()=="y") 
+              {
+                Console.WriteLine("How many more cards?");
+                int dealagainhand = Convert.ToInt32(Console.ReadLine());
+                if (players2 * dealagainhand > mydeck.cards.Length)
+                {
+                  Console.WriteLine("Cannot deal more than 52 cards, returning to main");
+                  Main();
+                }
+                else
+                {
+                  Deal(players2, dealagainhand, mydeck);
+                }
+              }
+              else return;
+            }
+          }
     }
     public class Deck
     {    
@@ -106,7 +133,7 @@ namespace Poker
             suit = suit2;
             cardvalue = cardvalue2;
         }
-        public override string ToString()
+        public override string ToString() 
         {
             return string.Format("{0} of {1}", cardvalue, suit);
         }
@@ -127,3 +154,4 @@ namespace Poker
       }
     }
 } 
+}
