@@ -16,12 +16,19 @@ namespace Poker
               Deck deck = new Deck();
               deck = FisherYates.Shuffle(deck);
               Console.WriteLine("How many players?");
-              int players = Convert.ToInt32(Console.ReadLine());
-              Console.WriteLine("How many cards?");
-              handSize=Convert.ToInt32(Console.ReadLine());
-              if (players * handSize > 52)
+              int players;
+              do
               {
-                Console.WriteLine("Cannot deal more than 52 cards");
+                Console.WriteLine("A positive numeric value is required.");
+              }while (Int32.TryParse(Console.ReadLine(), out players)==false | players<=0);
+              Console.WriteLine("How many cards?");
+              do
+              {
+                Console.WriteLine("A positive numeric value is required.");
+              }while (Int32.TryParse(Console.ReadLine(), out handSize)==false | handSize<=0);
+              if (players*handSize>52)
+              {
+                Console.WriteLine("nah fam.");
                 Main();
               }
               else
@@ -61,10 +68,14 @@ namespace Poker
               if (input2.ToLower()=="y") 
               {
                 Console.WriteLine("How many more cards?");
-                int dealagainhand = Convert.ToInt32(Console.ReadLine());
+                int dealagainhand; 
+                do
+                {
+                Console.WriteLine("A positive numeric value is required.");
+                }while (Int32.TryParse(Console.ReadLine(), out dealagainhand)==false | dealagainhand<=0);
                 if (players2 * dealagainhand > mydeck.cards.Length)
                 {
-                  Console.WriteLine("Cannot deal more than 52 cards, returning to main");
+                  Console.WriteLine("Cannot deal more than 52 cards, returning to main...");
                   Main();
                 }
                 else
