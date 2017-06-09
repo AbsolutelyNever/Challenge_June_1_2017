@@ -1,0 +1,177 @@
+import java.util.Scanner;
+
+import java.util.*;  
+import java.util.ArrayList;
+
+public class Main
+{
+	public static void main(String[] args)
+	{
+		Scanner stdIn = new Scanner(System.in);
+		//Declare that 
+		ArrayList<String> deck1 = new ArrayList<String>();
+		String[] symbols = {"Spades", "Clubs", "Diamonds", "Hearts"};
+		String[] numbers = {"Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
+    int players;
+    int hands;
+		
+		deck1.add("Ace of Spades");
+		deck1.add("Ace of Clubs");
+		deck1.add("Ace of Diamonds");
+		deck1.add("Ace of Hearts");
+		deck1.add("2 of Spades");
+		deck1.add("2 of Clubs");
+		deck1.add("2 of Diamonds");
+		deck1.add("2 of Hearts");
+		deck1.add("3 of Spades");
+		deck1.add("3 of Clubs");
+		deck1.add("3 of Diamonds");
+		deck1.add("3 of Hearts");
+		deck1.add("4 of Spades");
+		deck1.add("4 of Clubs");
+		deck1.add("4 of Diamonds");
+		deck1.add("4 of Hearts");
+		deck1.add("5 of Spades");
+		deck1.add("5 of Clubs");
+		deck1.add("5 of Diamonds");
+		deck1.add("5 of Hearts");
+		deck1.add("6 of Spades");
+		deck1.add("6 of Clubs");
+		deck1.add("6 of Diamonds");
+		deck1.add("6 of Hearts");
+		deck1.add("7 of Spades");
+		deck1.add("7 of Clubs");
+		deck1.add("7 of Diamonds");
+		deck1.add("7 of Hearts");
+		deck1.add("8 of Spades");
+		deck1.add("8 of Clubs");
+		deck1.add("8 of Diamonds");
+		deck1.add("8 of Hearts");
+		deck1.add("9 of Spades");
+		deck1.add("9 of Clubs");
+		deck1.add("9 of Diamonds");
+		deck1.add("9 of Hearts");
+		deck1.add("10 of Spades");
+		deck1.add("10 of Clubs");
+		deck1.add("10 of Diamonds");
+		deck1.add("10 of Hearts");
+		deck1.add("Jack of Spades");
+		deck1.add("Jack of Clubs");
+		deck1.add("Jack of Diamonds");
+		deck1.add("Jack of Hearts");
+		deck1.add("Queen of Spades");
+		deck1.add("Queen of Clubs");
+		deck1.add("Queen of Diamonds");
+		deck1.add("Queen of Hearts");
+		deck1.add("King of Spades");
+		deck1.add("King of Clubs");
+		deck1.add("King of Diamonds");
+		deck1.add("King of Hearts");
+		
+		//Shuffle that
+		Collections.shuffle(deck1);
+    
+		//Prompt the players
+		System.out.println("How many players?");
+		players = stdIn.nextInt();
+		System.out.println("How many hands?");
+		hands = stdIn.nextInt();
+		
+		if (players == 1)
+		{
+		  for (int i = 0; i < hands; i++) 
+		  {
+		    System.out.println(deck1.get(i));
+      }
+		}
+		else if (players == 2)
+		{
+		 for (int x = 0; x < players; x++)
+		 {
+      System.out.println("\r\nPlayer " + Integer.toString(x + 1) +" got:");
+  		for (int i = 0; i < hands; i++)
+  		{
+  		    System.out.println(deck1.get(i));
+  		    deck1.remove(i);
+  		}
+  		deck1.trimToSize();
+		 }
+		}
+		else if (players == 3)
+		{
+		 for (int x = 0; x < players; x++)
+		 {
+		   System.out.println("\r\nPlayer " + Integer.toString(x + 1) +" got:");
+  		  for (int i = 0; i < hands; i++) 
+  		  {
+  		    System.out.println(deck1.get(i));
+  		    deck1.remove(i);
+  		  }
+		  }
+		}
+		else if (players == 4)
+		{
+		for (int x = 0; x < players; x++)
+  		{
+  		System.out.println("\r\nPlayer " + Integer.toString(x + 1) +" got:");
+  		 for (int i = 0; i < hands; i++) 
+  		  {
+  		    System.out.println(deck1.get(i));
+    		  deck1.remove(i);
+        }
+		  }
+		}
+		else if (players == 5)
+		{
+		for (int x = 0; x < players; x++)
+  	{  
+  		System.out.println("\r\nPlayer " + Integer.toString(x + 1) +" got:");
+  		 for (int i = 0; i < hands; i++) 
+  		  {
+  		    System.out.println(deck1.get(i));
+    		  deck1.remove(i);
+        }
+  		}
+		}
+		else if (players == 6)
+		{
+		for (int x = 0; x < players; x++)
+		{
+  		System.out.println("\r\nPlayer " + Integer.toString(x + 1) +" got:");
+  		 for (int i = 0; i < hands; i++) 
+  		  {
+  		    System.out.println(deck1.get(i));
+    		  deck1.remove(i);
+        }
+  		}
+		}
+		else if (players == 7)
+		{
+		for (int x = 0; x < players; x++)
+		{
+  		System.out.println("\r\nPlayer " + Integer.toString(x + 1) +" got:");
+  		 for (int i = 0; i < hands; i++) 
+  		  {
+  		    System.out.println(deck1.get(i));
+    		  deck1.remove(i);
+        }
+  		}
+		}
+		else if (players == 8)
+		{
+		for (int x = 0; x < players; x++)
+		{
+  		System.out.println("\r\nPlayer " + Integer.toString(x + 1) +" got:");
+  		 for (int i = 0; i < hands; i++) 
+  		  {
+  		    System.out.println(deck1.get(i));
+    		  deck1.remove(i);
+        }
+  		}
+		}
+		else 
+		{
+		  System.out.println("TOO MANY PLAYERS!");
+		}
+	}
+}
